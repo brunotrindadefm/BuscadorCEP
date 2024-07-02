@@ -7,7 +7,19 @@ function FetchData({ cep }) {
     const [loading, setLoading] = useState(false);
     const [erro, setErro] = useState(null);
 
+    const validarCep = (cep) => {
+        const regex = /^[0-9]{8}$/;
+        return regex.test(cep);
+    };
+
     const fetchData = () => {
+
+        if (!validarCep(cep)) {
+            setErro("CEP inválido. Digite um CEP válido.");
+            setData(null);
+            return;
+        }
+
         setLoading(true);
         setErro(null);
 

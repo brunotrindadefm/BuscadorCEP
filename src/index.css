@@ -17,8 +17,9 @@ html {
 .titulo {
   color: whitesmoke;
   position: absolute;
-  top: 90px;
+  top: 50px;
   left: 50%;
+  font-weight: bold;
   transform: translate(-50%, -50%);
 }
 

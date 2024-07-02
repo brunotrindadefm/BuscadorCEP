@@ -9,7 +9,7 @@ function Input({onClick}) {
         e.preventDefault();
         onClick(cep);
     };
-
+    
     return (
         <>
             <div className="container titulo text-center">
