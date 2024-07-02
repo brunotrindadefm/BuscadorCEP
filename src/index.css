@@ -32,4 +32,8 @@ form {
   height: 55px;
   width: 50px;
   margin: 0 5px;
-} 
+}
+
+#endereco p {
+  color: aqua;
+}

@@ -17,7 +17,7 @@ function FetchData({ cep }) {
         fetch(apiCepUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Não foi obtida reposta. Erro 374170` + response.statusText)
+                    throw new Error(`404 Not Found` + response.statusText)
                 }
                 return response.json();
             })
@@ -46,15 +46,15 @@ function FetchData({ cep }) {
         <>
             <div className="container text-center text-white">
                 {loading && <p>Carregando...</p>}
-                {erro && <p>Erro: {erro}</p>}
+                {erro && <p>Erro: {erro}</p> }
                 {data  ? (
-                    <div>
+                    <div id="endereco" >
                         <h2>Endereço</h2>
-                        <p>CEP: {data.cep}</p>
-                        <p>Estado: {data.state}</p>
-                        <p>Cidade: {data.city}</p>
-                        <p>Bairro: {data.neighborhood}</p>
-                        <p>Rua: {data.street}</p>
+                        <p><b>CEP:</b> {data.cep}</p>
+                        <p><b>Estado:</b> {data.state}</p>
+                        <p><b>Cidade:</b> {data.city}</p>
+                        <p><b>Bairro:</b> {data.neighborhood}</p>
+                        <p><b>Rua:</b> {data.street}</p>
                     </div>
                 ) : (
                     !loading && !erro && <p>Digite um CEP para buscar o endereço.</p>
