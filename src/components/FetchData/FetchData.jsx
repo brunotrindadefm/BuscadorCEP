@@ -8,8 +8,8 @@ function FetchData({ cep }) {
     const [erro, setErro] = useState(null);
 
     const validarCep = (cep) => {
-        const regex = /^[0-9]{8}$/;
-        return regex.test(cep);
+        const digitos = /^[0-9]{8}$/;
+        return digitos.test(cep);
     };
 
     const fetchData = () => {
