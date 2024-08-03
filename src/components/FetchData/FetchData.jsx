@@ -8,7 +8,8 @@ function FetchData({ cep }) {
     const [erro, setErro] = useState(null);
 
     const validarCep = (cep) => {
-        const digitos = /^[0-9]{8}$/;
+        // Validação para funcionar se tiver um traço e se não tiver
+        const digitos = /^[0-9]{5}-?[0-9]{3}$/;
         return digitos.test(cep);
     };
 
@@ -24,8 +25,10 @@ function FetchData({ cep }) {
         // Começa o carregamento para fazer a consulta
         setLoading(true);
 
-        // Erro começa como nulo
+        // Erro começa sempre como nulo
         setErro(null);
+
+        setData(null)
 
         // Link da API, que recebe o valor de cep. Isso tudo se passar pela validação
         const apiCepUrl = `https://brasilapi.com.br/api/cep/v1/${cep}`;
@@ -74,20 +77,17 @@ function FetchData({ cep }) {
             <div className="container text-center text-white">
                 {loading && <p>Carregando...</p>}
                 {erro && <p>Erro: {erro}</p>}
-                {data ? (
+                {data && (
                     <div id="endereco" >
                         <h2>Endereço</h2>
-                        <p><b>CEP:</b> {data.cep}</p>
-                        <p><b>Estado:</b> {data.state}</p>
-                        <p><b>Cidade:</b> {data.city}</p>
-                        <p><b>Bairro:</b> {data.neighborhood}</p>
-                        <p><b>Rua:</b> {data.street}</p>
+                        {data.cep.length > 0 && <p><b>Cep:</b> {data.cep}</p>}
+                        {data.state.length > 0 && <p><b>Estado:</b> {data.state}</p>}
+                        {data.city.length > 0 && <p><b>Cidade:</b> {data.city}</p>}
+                        {data.neighborhood.length > 0 && <p><b>Bairro:</b> {data.neighborhood}</p>}
+                        {data.street.length > 0 && <p><b>Rua:</b> {data.street}</p>}
                     </div>
-                ) : (
-                    !loading && !erro && <p>Digite um CEP para buscar o endereço.</p>
                 )}
             </div>
-            {console.log(data)}
         </>
     )
 }
